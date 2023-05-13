@@ -40,12 +40,11 @@ const QuestionCard = (props) => {
 
   return (
     <div>
-      <h1 style={{ textAlign: "center", height: "100px" }}>{question}</h1>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <h1 className="text-center h-28">{question}</h1> {/* height: "100px" }} */}
+      <div className="grid grid-cols-2 gap-6">
         {answers.map((answer) => (
-          <div
+          <div className="shadow text-center cursor-pointer"
             id={answer}
-            style={{ width: "20%", cursor: "pointer", textAlign: "center" }}
             onMouseLeave={leaveAnswer}
             onMouseEnter={hoverAnswer}
             onClick={handleClick}
