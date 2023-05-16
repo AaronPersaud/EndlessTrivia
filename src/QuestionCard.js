@@ -40,10 +40,10 @@ const QuestionCard = (props) => {
 
   return (
     <div>
-      <h1 className="text-center h-28">{question}</h1> {/* height: "100px" }} */}
-      <div className="grid grid-cols-2 gap-6">
+      <h1 className="text-center text-2xl p-9 h-28">{question}</h1> 
+      <div className="grid grid-cols-2 gap-8">
         {answers.map((answer) => (
-          <div className="shadow text-center cursor-pointer"
+          <div className="shadow text-center cursor-pointer h-24 p-9"
             id={answer}
             onMouseLeave={leaveAnswer}
             onMouseEnter={hoverAnswer}

@@ -44,6 +44,7 @@ function App() {
           />:
           <p>Loading...</p>
         }
+      <footer className="fixed bottom-0 left-0 text-xs"><a href={"https://the-trivia-api.com/"}>The Trivia API</a></footer>
     </div>
   );
 }
