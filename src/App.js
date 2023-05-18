@@ -33,7 +33,7 @@ function App() {
   };
 
   return (
-    <div className="app">
+    <div className="app bg-slate-200 min-h-screen">
       <div>Score: {score}</div>
       {post?
           <QuestionCard 
@@ -44,7 +44,7 @@ function App() {
           />:
           <p>Loading...</p>
         }
-      <footer className="fixed bottom-0 left-0 text-xs"><a href={"https://the-trivia-api.com/"}>The Trivia API</a></footer>
+      <footer className="fixed bg-slate-200 bottom-0 left-0 text-xs"><a href={"https://the-trivia-api.com/"}>The Trivia API</a></footer>
     </div>
   );
 }

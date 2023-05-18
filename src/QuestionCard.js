@@ -25,39 +25,32 @@ const QuestionCard = (props) => {
     setDisabled(true);
     const element = document.getElementById(correctAnswer);
     if (e.target.innerText === correctAnswer) {
-      e.target.style.background = "green";
+      e.target.style.background = "#86efac"; // green 300
     } else {
-      e.target.style.background = "red";
+      e.target.style.background = "#f87171"; // red 400
       setTimeout(() => {
-        element.style.background = "green";
+        element.style.background = "#86efac";
       }, 500);
     }
     setTimeout(() => {
-      e.target.style.background = "#6366f1"
-      element.style.background = "#6366f1";
+      e.target.style.background = "#a5f3fc"; // cyan 200
+      element.style.background = "#a5f3fc"; // cyan 200
       props.guessAnswer(e.target.innerText);
       setDisabled(false);
     }, 1500);
   };
 
-  // const hoverAnswer = (e) => {
-  //   e.target.style.background = "blue";
-  // };
-
-  // const leaveAnswer = (e) => {
-  //   e.target.style.background = "none";
-  // };
-
   return (
     <div>
-      <h1 className="text-center text-2xl p-9 h-28">{question}</h1> 
+      <h1 className="flex justify-center items-center text-center text-2xl h-28">
+        {question}
+      </h1>
       <div className="grid grid-cols-2 gap-8">
         {answers.map((answer) => (
-          <button className="shadow text-center bg-indigo-500 cursor-pointer h-24 p-9"
+          <button
+            className="flex rounded-lg justify-center items-center shadow text-center bg-cyan-200 cursor-pointer h-24 p-9"
             id={answer}
             disabled={disabled}
-            // onMouseLeave={leaveAnswer}
-            // onMouseEnter={hoverAnswer}
             onClick={handleClick}
           >
             {answer}
