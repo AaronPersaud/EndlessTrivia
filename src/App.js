@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import QuestionCard from "./QuestionCard";
+import PlayerCard from "./PlayerCard";
 
 function App() {
   const [questions, setQuestions] = useState([]);
@@ -34,6 +35,7 @@ function App() {
 
   return (
     <div className="app bg-slate-200 min-h-screen">
+      <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
       <div>Score: {score}</div>
       {post?
           <QuestionCard 
