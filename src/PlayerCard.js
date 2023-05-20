@@ -5,7 +5,7 @@ const PlayerCard = (props) => {
     const [name, setName] = useState("");
 
     return (
-        <div className="shadow bg-white">{name}: {score}</div>
+        <div className="shadow h-24 bg-white">Name: {score}</div>
     )
 }
 export default PlayerCard;
