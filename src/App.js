@@ -51,7 +51,7 @@ function App() {
             correctAnswer={post.correctAnswer}
             guessAnswer={guessAnswer}
           />:
-          <p>Loading...</p>
+          <p className="flex justify-center text-3xl h-96 items-center">Loading questions...</p>
         }
       <footer className="fixed bg-slate-200 bottom-0 left-0 text-xs"><a href={"https://the-trivia-api.com/"}>The Trivia API</a></footer>
     </div>

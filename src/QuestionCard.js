@@ -48,7 +48,7 @@ const QuestionCard = (props) => {
       <div className="w-2/4 grid grid-cols-2 gap-8">
         {answers.map((answer) => (
           <button
-            className="flex rounded-lg justify-center items-center shadow text-center bg-cyan-200 cursor-pointer h-24 p-9"
+            className="flex rounded-lg justify-center items-center shadow text-center bg-indigo-200 cursor-pointer h-24 p-9"
             key={answer}
             id={answer}
             disabled={disabled}
