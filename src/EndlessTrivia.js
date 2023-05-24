@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import QuestionCard from "./QuestionCard";
 import PlayerCard from "./PlayerCard";
+import Modal from "./Modal";
 
 export function EndlessTrivia() {
   const [questions, setQuestions] = useState([]);
@@ -34,12 +35,14 @@ export function EndlessTrivia() {
   };
 
   const Multiplayer = () => {
-    alert("Coming Soon!");
+    const element = document.getElementById("modal");
+    element.style.display = 'block';
   }
 
   return (
     <div className="app bg-slate-200 min-h-screen">
       <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+      <Modal />
       <div className="flex">
       <div>Score: {score}</div>
       <button onClick={Multiplayer} className="bg-white absolute right-0 rounded-md">Multiplayer</button>
