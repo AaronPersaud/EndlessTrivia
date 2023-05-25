@@ -5,7 +5,7 @@ const Modal = (props) => {
     }
 
     return (
-        <div id="modal" className="hidden fixed pt-24 left-0 top-0 bg-cyan-200 z-1">
+        <div id="modal" className="hidden fixed left-0 top-0 bg-cyan-200 z-1">
             <p>Please enter your name:</p>
             <input className="rounded-sm"/>
             <div>

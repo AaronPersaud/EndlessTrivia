@@ -1,1 +1,3 @@
-export const Trivia = {}
+export const Trivia = {
+    setup: () => ({ players: []}),
+}
