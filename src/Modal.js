@@ -9,7 +9,7 @@ const Modal = (props) => {
             <p>Please enter your name:</p>
             <input className="rounded-sm"/>
             <div>
-            <button className="rounded-sm bg-indigo-200">Submit</button>
+            <button onClick={props.onSubmit} className="rounded-sm bg-indigo-200">Submit</button>
             <button className="rounded-sm float-right bg-indigo-200" onClick={closeModal}>Cancel</button>
             </div>
         </div>

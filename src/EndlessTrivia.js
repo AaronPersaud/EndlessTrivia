@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import QuestionCard from "./QuestionCard";
 import Modal from "./Modal";
 
-export function EndlessTrivia() {
+export function EndlessTrivia({ctx, G, moves}) {
   const [questions, setQuestions] = useState([]);
   const [score, setScore] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -41,7 +41,7 @@ export function EndlessTrivia() {
   return (
     <div className="app bg-slate-200 min-h-screen">
       <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-      <Modal />
+      <Modal onSubmit={moves.joinGame}/>
       <div className="flex">
         <div>Score: {score}</div>
         <button

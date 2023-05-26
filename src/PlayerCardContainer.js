@@ -1,10 +1,10 @@
-import QuestionCard from "./QuestionCard";
+import PlayerCard from './PlayerCard.js'
 
 const PlayerCardContainer = (props) => {
   return (
     <div className="flex flex-col">
       {props.players.map((player) => {
-        <QuestionCard name={player.name} />;
+        <PlayerCard name={player.name} />;
       })}
     </div>
   );
