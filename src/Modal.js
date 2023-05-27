@@ -12,7 +12,7 @@ const Modal = (props) => {
     if (inputValue === "") {
       alert("Cannot be blank");
     } else {
-      //call function in moves
+      props.moves.joinGame(inputValue);
       setInputValue("");
       closeModal();
     }

@@ -1,7 +1,9 @@
 export const Trivia = {
     setup: () => ({ players: []}),
 
-    joinGame: ({G, playerID}) => {
-        G.players.push(playerID);
+    moves:{
+        joinGame: ({G, playerID},name) => {
+            G.players.push(name);
+        }
     }
 }

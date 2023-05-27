@@ -41,7 +41,7 @@ export function EndlessTrivia({ctx, G, moves}) {
   return (
     <div className="app bg-slate-200 min-h-screen">
       <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-      <Modal onSubmit={moves.joinGame}/>
+      <Modal moves={moves}/>
       <div className="flex">
         <div>Score: {score}</div>
         <button
