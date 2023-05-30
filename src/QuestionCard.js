@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { shuffle } from "./utils"; 
 
 const QuestionCard = (props) => {
   const question = props.question;
@@ -10,16 +11,6 @@ const QuestionCard = (props) => {
   useEffect(() => {
     setAnswers(shuffle([...wrongAnswer, correctAnswer]));
   }, [wrongAnswer, correctAnswer])
-
-  //Fisher-Yates shuffling algorithm (returns new array)
-  function shuffle(arr) {
-    let array = [...arr];
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-  }
 
   const handleClick = (e) => {
     setDisabled(true);

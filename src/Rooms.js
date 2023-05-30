@@ -3,8 +3,6 @@ const Rooms = (props) => {
     alert("Start the game!");
   };
 
-  console.log(props.game.players)
-
   return (
     <div className="bg-white">
       <p>Players:</p>

@@ -13,6 +13,7 @@ const Modal = (props) => {
       alert("Cannot be blank");
     } else {
       props.moves.joinGame(inputValue);
+      props.change();
       setInputValue("");
       closeModal();
     }
