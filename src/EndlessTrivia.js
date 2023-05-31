@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import QuestionCard from "./QuestionCard";
 import Modal from "./Modal";
 import Rooms from "./Rooms";
+import { getQuestions } from "./utils";
 
-export function EndlessTrivia({ctx, G, moves}) {
+export function EndlessTrivia({ ctx, G, moves }) {
   const [questions, setQuestions] = useState([]);
   const [score, setScore] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -11,23 +12,16 @@ export function EndlessTrivia({ctx, G, moves}) {
 
   const post = questions[currentQuestion];
 
-  useEffect(() => getQuestions(), []);
-
-  const getQuestions = () => {
-    fetch("https://the-trivia-api.com/api/questions?limit=10")
-      .then((response) => response.json())
-      .then((data) => {
-        setQuestions(data);
-        setCurrentQuestion(0);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  };
+  useEffect(() => {
+    getQuestions().then((questions) => setQuestions(questions));
+  }, []);
 
   const guessAnswer = (guess) => {
     if (currentQuestion === questions.length - 1) {
-      getQuestions();
+      getQuestions().then((questions) => {
+        setQuestions(questions);
+        setCurrentQuestion(0);
+      });
     }
     if (guess === post.correctAnswer) {
       setScore(score + 1);
@@ -37,7 +31,7 @@ export function EndlessTrivia({ctx, G, moves}) {
 
   const goToRoom = () => {
     setGameInProgress(false);
-  }
+  };
 
   const Multiplayer = () => {
     const element = document.getElementById("modal");
@@ -73,9 +67,7 @@ export function EndlessTrivia({ctx, G, moves}) {
           )}
         </div>
       )}
-      {!gameInProgress &&
-        <Rooms game={G}/>
-      }
+      {!gameInProgress && <Rooms game={G} />}
       <footer className="fixed bg-slate-200 bottom-0 left-0 text-xs">
         <a href={"https://the-trivia-api.com/"}>The Trivia API</a>
       </footer>

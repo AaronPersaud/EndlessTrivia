@@ -7,3 +7,14 @@
     }
     return array;
   }
+
+  export function getQuestions() {
+    return fetch("https://the-trivia-api.com/api/questions?limit=10")
+      .then((response) => {return response.json()})
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };

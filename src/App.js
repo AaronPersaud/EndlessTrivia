@@ -9,6 +9,7 @@ const App = Client({
 
   game: Trivia,
   board: EndlessTrivia,
+  multiplayer: SocketIO({ server: 'localhost:8000' }),
   debug: false
 
 });
