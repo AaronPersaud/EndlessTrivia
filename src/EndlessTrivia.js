@@ -9,6 +9,7 @@ export function EndlessTrivia({ ctx, G, moves }) {
   const [score, setScore] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [gameInProgress, setGameInProgress] = useState(true);
+  const multiplayerQuestions = G.multiQuestions;
 
   const post = questions[currentQuestion];
 
@@ -67,7 +68,7 @@ export function EndlessTrivia({ ctx, G, moves }) {
           )}
         </div>
       )}
-      {!gameInProgress && <Rooms game={G} />}
+      {!gameInProgress && <Rooms moves={moves} game={G} />}
       <footer className="fixed bg-slate-200 bottom-0 left-0 text-xs">
         <a href={"https://the-trivia-api.com/"}>The Trivia API</a>
       </footer>
