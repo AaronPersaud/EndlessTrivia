@@ -7,9 +7,10 @@ export const Trivia = {
         joinGame: ({G, playerID},name) => {
             G.players.push(name);
         },
-        startGame: ({G, playerID},numQuestions) => {
+        startGame: ({G, playerID}) => {
             getQuestions().then((questions) => {
-                G.multiQuestions = questions;
+                console.log(questions)
+                G.multiQuestions.push(questions);
             });
         }
     }

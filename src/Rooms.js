@@ -1,6 +1,6 @@
 const Rooms = (props) => {
   const startGame = () => {
-    props.moves.startGame(10);
+    props.moves.startGame();
   };
 
   return (

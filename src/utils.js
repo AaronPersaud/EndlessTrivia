@@ -1,3 +1,5 @@
+  import axios from "axios";
+  
   //Fisher-Yates shuffling algorithm (returns new array)
   export function shuffle(arr) {
     let array = [...arr];
@@ -9,11 +11,8 @@
   }
 
   export function getQuestions() {
-    return fetch("https://the-trivia-api.com/api/questions?limit=10")
-      .then((response) => {return response.json()})
-      .then((data) => {
-        return data;
-      })
+    return axios.get("https://the-trivia-api.com/api/questions?limit=5")
+      .then((response) => {return response.data})
       .catch((err) => {
         console.log(err.message);
       });
