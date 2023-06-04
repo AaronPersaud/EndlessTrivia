@@ -11,7 +11,8 @@ export const Trivia = {
             getQuestions().then((questions) => {
                 console.log(questions)
                 G.multiQuestions.push(questions);
-            });
+            })
+            .catch((err) => console.log(err))
         }
     }
 }

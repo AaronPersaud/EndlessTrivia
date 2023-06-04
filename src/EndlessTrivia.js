@@ -3,12 +3,15 @@ import QuestionCard from "./QuestionCard";
 import Modal from "./Modal";
 import Rooms from "./Rooms";
 import { getQuestions } from "./utils";
+import TriviaBot from "./TriviaBot";
 
 export function EndlessTrivia({ ctx, G, moves }) {
   const [questions, setQuestions] = useState([]);
   const [score, setScore] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [gameInProgress, setGameInProgress] = useState(true);
+  const [singlePlayer, setSinglePlayer] = useState(true);
+  const [bot, setBot] = useState(false);
+  const [rooms, setRooms] = useState(false);
   const multiplayerQuestions = G.multiQuestions;
 
   const post = questions[currentQuestion];
@@ -31,7 +34,8 @@ export function EndlessTrivia({ ctx, G, moves }) {
   };
 
   const goToRoom = () => {
-    setGameInProgress(false);
+    setSinglePlayer(false);
+    setRooms(true);
   };
 
   const Multiplayer = () => {
@@ -39,20 +43,32 @@ export function EndlessTrivia({ ctx, G, moves }) {
     element.style.display = "block";
   };
 
+  const startBot = () => {
+    setSinglePlayer(false);
+    setBot(true);
+  }
+
   return (
     <div className="app bg-slate-200 min-h-screen">
       <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-      {gameInProgress && (
+      {singlePlayer && (
         <div>
           <Modal moves={moves} change={goToRoom} />
           <div className="flex">
+            <div>
             <div>Score: {score}</div>
+            </div>
+            <div className="absolute right-0">
             <button
               onClick={Multiplayer}
-              className="bg-white absolute right-0 rounded-md"
+              className="bg-white rounded-md"
             >
               Multiplayer
             </button>
+            <button onClick={startBot} className="bg-white rounded-md">
+              vs. AI
+            </button>
+            </div>
           </div>
           {post ? (
             <QuestionCard
@@ -68,7 +84,8 @@ export function EndlessTrivia({ ctx, G, moves }) {
           )}
         </div>
       )}
-      {!gameInProgress && <Rooms moves={moves} game={G} />}
+      {rooms && <Rooms moves={moves} game={G} />}
+      {bot && <TriviaBot/>}
       <footer className="fixed bg-slate-200 bottom-0 left-0 text-xs">
         <a href={"https://the-trivia-api.com/"}>The Trivia API</a>
       </footer>
