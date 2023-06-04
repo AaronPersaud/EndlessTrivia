@@ -1,5 +1,5 @@
 import { useState } from "react";
-import QuestionCard from "./QuestionCard";
+import QuestionCard from "../QuestionCard";
 
 const TriviaBot = (props) => {
   const [startGame, setStartGame] = useState(false);

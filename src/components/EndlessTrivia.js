@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import QuestionCard from "./QuestionCard";
-import Modal from "./Modal";
-import Rooms from "./Rooms";
-import { getQuestions } from "./utils";
-import TriviaBot from "./TriviaBot";
+import Modal from "./multiplayer/Modal";
+import Rooms from "./multiplayer/Rooms";
+import { getQuestions } from "../utils";
+import TriviaBot from "./ai/TriviaBot";
 
 export function EndlessTrivia({ ctx, G, moves }) {
   const [questions, setQuestions] = useState([]);

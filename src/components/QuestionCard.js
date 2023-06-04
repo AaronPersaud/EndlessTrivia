@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { shuffle } from "./utils"; 
+import { shuffle } from "../utils"; 
 
 const QuestionCard = (props) => {
   const question = props.question;

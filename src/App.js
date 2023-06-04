@@ -1,4 +1,4 @@
-import { EndlessTrivia } from "./EndlessTrivia";
+import { EndlessTrivia } from "./components/EndlessTrivia";
 import { Client } from 'boardgame.io/react';
 import { SocketIO } from 'boardgame.io/multiplayer'
 import { Trivia } from "./Trivia";
