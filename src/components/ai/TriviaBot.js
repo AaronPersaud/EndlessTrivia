@@ -4,6 +4,20 @@ import QuestionCard from "../QuestionCard";
 const TriviaBot = (props) => {
   const [startGame, setStartGame] = useState(false);
 
+  const askGPT = () => {
+    return fetch('http://localhost:8000/askGPT',{
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+      }})
+      .then((response) => {
+        return response.json();
+      })
+      .catch((err) => {
+        console.log(err.message);
+      })
+  }
+
   return (
     <div>
       {startGame ? (
@@ -16,7 +30,7 @@ const TriviaBot = (props) => {
           <br />
           <p>Or, ask it your own trivia questions. It knows EVERYTHING</p>
           <br />
-          <button className="bg-indigo-200">Start</button>
+          <button onClick={() => askGPT().then((data) => console.log(data))} className="bg-indigo-200">Start</button>
           <button className="bg-indigo-200">Exit</button>
         </div>
       )}

@@ -22,4 +22,8 @@ async function askGPTQuestion(question) {
     console.log(completion.data.choices[0].message);
 }
 
+server.router.get('/askGPT', ctx => {
+    ctx.body = {text: "Hello World!"};
+})
+
 server.run(8000);
