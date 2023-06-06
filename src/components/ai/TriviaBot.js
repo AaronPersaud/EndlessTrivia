@@ -1,5 +1,6 @@
 import { useState } from "react";
 import QuestionCard from "../QuestionCard";
+import AskQuestion from "./AskQuestion";
 
 const TriviaBot = (props) => {
   const [startGame, setStartGame] = useState(false);
@@ -21,7 +22,7 @@ const TriviaBot = (props) => {
   return (
     <div>
       {startGame ? (
-        <QuestionCard />
+        <AskQuestion />
       ) : (
         <div className="bg-white w-1/2 text-center">
           <p>TriviaBot</p>
@@ -30,7 +31,7 @@ const TriviaBot = (props) => {
           <br />
           <p>Or, ask it your own trivia questions. It knows EVERYTHING</p>
           <br />
-          <button onClick={() => askGPT().then((data) => console.log(data))} className="bg-indigo-200">Start</button>
+          <button onClick={() => setStartGame(true)} className="bg-indigo-200">Start</button>
           <button className="bg-indigo-200">Exit</button>
         </div>
       )}
