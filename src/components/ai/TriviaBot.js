@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import QuestionCard from "../QuestionCard";
 import AskQuestion from "./AskQuestion";
@@ -5,14 +6,12 @@ import AskQuestion from "./AskQuestion";
 const TriviaBot = (props) => {
   const [startGame, setStartGame] = useState(false);
 
-  const askGPT = () => {
-    return fetch('http://localhost:8000/askGPT',{
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-      }})
+  const askGPT = (data) => {
+    return axios.get('http://localhost:8000/askGPT', {
+      params: {question: data}
+    })
       .then((response) => {
-        return response.json();
+        return response.data;
       })
       .catch((err) => {
         console.log(err.message);
@@ -22,7 +21,7 @@ const TriviaBot = (props) => {
   return (
     <div>
       {startGame ? (
-        <AskQuestion />
+        <AskQuestion askGPT={askGPT} />
       ) : (
         <div className="bg-white w-1/2 text-center">
           <p>TriviaBot</p>
