@@ -23,9 +23,10 @@ async function askGPTQuestion(question) {
     return completion.data.choices[0].message;
 }
 
-server.router.get('/askGPT', ctx => {
+server.router.get('/askGPT', async (ctx) => {
     const question = ctx.request.query.question;
-    ctx.body = {text: question};
+    const answer = await askGPTQuestion(question);
+    ctx.body = {text: answer.content};
 })
 
 server.run(8000);
