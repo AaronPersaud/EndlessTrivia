@@ -17,12 +17,12 @@ export function EndlessTrivia({ ctx, G, moves }) {
   const post = questions[currentQuestion];
 
   useEffect(() => {
-    getQuestions().then((questions) => setQuestions(questions));
+    getQuestions(5).then((questions) => setQuestions(questions));
   }, []);
 
   const guessAnswer = (guess) => {
     if (currentQuestion === questions.length - 1) {
-      getQuestions().then((questions) => {
+      getQuestions(10).then((questions) => {
         setQuestions(questions);
         setCurrentQuestion(0);
       });

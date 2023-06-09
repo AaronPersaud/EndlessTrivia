@@ -10,8 +10,8 @@
     return array;
   }
 
-  export function getQuestions() {
-    return axios.get("https://the-trivia-api.com/api/questions?limit=5")
+  export function getQuestions(numQuestions) {
+    return axios.get("https://the-trivia-api.com/api/questions?limit=" + numQuestions.toString())
       .then((response) => {return response.data})
       .catch((err) => {
         console.log(err.message);
