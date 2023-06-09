@@ -8,7 +8,8 @@ const TriviaBot = (props) => {
 
   const askGPT = (data) => {
     return axios.get('http://localhost:8000/askGPT', {
-      params: {question: data}
+      params: {question: data,
+      systemConfig: "You only answer trivia questions. If the question is not a trivia question, respond with 'Enter a trivia question'"}
     })
       .then((response) => {
         return response.data;

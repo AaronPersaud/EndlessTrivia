@@ -9,7 +9,7 @@ const server = Server({
     origins: [Origins.LOCALHOST],
 });
 
-async function askGPTQuestion(question) {
+async function askGPTQuestion(question,systemConfig) {
     const configuration = new Configuration({
         apiKey: key.OPENAI_API_KEY
     });
@@ -17,7 +17,7 @@ async function askGPTQuestion(question) {
 
     const completion = await openai.createChatCompletion({
         model: "gpt-3.5-turbo",
-        messages: [{role: "user", content: question}],
+        messages: [{role:"system", content: systemConfig },{role: "user", content: question}],
     });
     console.log(completion.data.choices[0].message);
     return completion.data.choices[0].message;
@@ -25,7 +25,8 @@ async function askGPTQuestion(question) {
 
 server.router.get('/askGPT', async (ctx) => {
     const question = ctx.request.query.question;
-    const answer = await askGPTQuestion(question);
+    const config = ctx.request.query.systemConfig;
+    const answer = await askGPTQuestion(question, config);
     ctx.body = {text: answer.content};
 })
 

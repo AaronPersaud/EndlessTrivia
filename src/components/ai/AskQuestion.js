@@ -8,6 +8,7 @@ const AskQuestion = (props) => {
     if (inputValue === "") {
       alert("Cannot be blank");
     } else {
+      setAnswer("Loading answer...")
       props.askGPT(inputValue).then((response) => {
         setAnswer(response.text)
     });
