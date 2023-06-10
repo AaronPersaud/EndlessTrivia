@@ -1,29 +1,31 @@
 import axios from "axios";
 import { useState } from "react";
-import QuestionCard from "../QuestionCard";
 import AskQuestion from "./AskQuestion";
+import VersusBot from "./VersusBot";
 
 const TriviaBot = (props) => {
-  const [startGame, setStartGame] = useState(false);
+  const [mode, setMode] = useState();
 
   const askGPT = (data) => {
-    return axios.get('http://localhost:8000/askGPT', {
-      params: {question: data,
-      systemConfig: "You only answer trivia questions. If the question is not a trivia question, respond with 'Enter a trivia question'"}
-    })
+    return axios
+      .get("http://localhost:8000/askGPT", {
+        params: {
+          question: data,
+          systemConfig:
+            "You only answer trivia questions. If the question is not a trivia question, respond with 'Enter a trivia question'",
+        },
+      })
       .then((response) => {
         return response.data;
       })
       .catch((err) => {
         console.log(err.message);
-      })
-  }
+      });
+  };
 
   return (
     <div>
-      {startGame ? (
-        <AskQuestion askGPT={askGPT} />
-      ) : (
+      {!mode && (
         <div className="bg-white w-1/2 text-center">
           <p>TriviaBot</p>
           <br />
@@ -31,10 +33,17 @@ const TriviaBot = (props) => {
           <br />
           <p>Or, ask it your own trivia questions. It knows EVERYTHING</p>
           <br />
-          <button onClick={() => setStartGame(true)} className="bg-indigo-200">Start</button>
+          <button onClick={() => setMode("question")} className="bg-indigo-200">
+            Start
+          </button>
+          <button onClick={() => setMode("battle")} className="bg-indigo-200">
+            Battle
+          </button>
           <button className="bg-indigo-200">Exit</button>
         </div>
       )}
+      {mode === "question" && <AskQuestion askGPT={askGPT} />}
+      {mode === "battle" && <VersusBot />}
     </div>
   );
 };
