@@ -12,7 +12,7 @@ const QuestionCard = (props) => {
     setAnswers(shuffle([...wrongAnswer, correctAnswer]));
   }, [wrongAnswer, correctAnswer])
 
-  const handleClick = (e) => {
+  const guessSinglePlayer = (e) => {
     setDisabled(true);
     const element = document.getElementById(correctAnswer);
     if (e.target.innerText === correctAnswer) {
@@ -30,6 +30,26 @@ const QuestionCard = (props) => {
       setDisabled(false);
     }, 1500);
   };
+
+  const guessVersusBot = (e) => {
+    setDisabled(true);
+    const element = document.getElementById(correctAnswer);
+  }
+
+  const handleClick = (e) => {
+    switch(props.gameMode) {
+      case 'singleplayer':
+        guessSinglePlayer(e);
+        break;
+      case 'bot':
+        guessVersusBot(e);
+        break;
+      default:
+        console.log("Something went wrong!")
+    }
+
+  }
+
 
   return (
     <div className="flex flex-col items-center">

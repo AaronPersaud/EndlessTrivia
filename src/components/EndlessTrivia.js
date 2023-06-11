@@ -9,9 +9,7 @@ export function EndlessTrivia({ ctx, G, moves }) {
   const [questions, setQuestions] = useState([]);
   const [score, setScore] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [singlePlayer, setSinglePlayer] = useState(true);
-  const [bot, setBot] = useState(false);
-  const [rooms, setRooms] = useState(false);
+  const [gameMode, setGameMode] = useState('singleplayer');
   const multiplayerQuestions = G.multiQuestions;
 
   const post = questions[currentQuestion];
@@ -34,8 +32,7 @@ export function EndlessTrivia({ ctx, G, moves }) {
   };
 
   const goToRoom = () => {
-    setSinglePlayer(false);
-    setRooms(true);
+    setGameMode('multiplayer');
   };
 
   const Multiplayer = () => {
@@ -44,14 +41,13 @@ export function EndlessTrivia({ ctx, G, moves }) {
   };
 
   const startBot = () => {
-    setSinglePlayer(false);
-    setBot(true);
+    setGameMode('bot');
   }
 
   return (
     <div className="app bg-slate-200 min-h-screen">
       <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-      {singlePlayer && (
+      {gameMode === "singleplayer" && (
         <div>
           <Modal moves={moves} change={goToRoom} />
           <div className="flex">
@@ -76,6 +72,7 @@ export function EndlessTrivia({ ctx, G, moves }) {
               wrongAnswer={post.incorrectAnswers}
               correctAnswer={post.correctAnswer}
               guessAnswer={guessAnswer}
+              gameMode={gameMode}
             />
           ) : (
             <p className="flex justify-center text-3xl h-96 items-center">
@@ -84,8 +81,8 @@ export function EndlessTrivia({ ctx, G, moves }) {
           )}
         </div>
       )}
-      {rooms && <Rooms moves={moves} game={G} />}
-      {bot && <TriviaBot/>}
+      {gameMode === 'multiplayer' && <Rooms moves={moves} game={G} />}
+      {gameMode === 'bot' && <TriviaBot gameMode={gameMode}/>}
       <footer className="fixed bg-slate-200 bottom-0 left-0 text-xs">
         <a href={"https://the-trivia-api.com/"}>The Trivia API</a>
       </footer>

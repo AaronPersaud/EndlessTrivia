@@ -20,9 +20,7 @@ const VersusBot = (props) => {
   };
 
   const handleChange = (e) => {
-    console.log(e.target.value);
     setNumQuestions(e.target.value);
-    console.log(numQuestions);
   };
 
   return (
@@ -40,7 +38,7 @@ const VersusBot = (props) => {
         </div>
       ) : (
         <div>
-          <div classname="flex">
+          <div className="flex">
             <p>Your Score:{playerScore}</p>
             <p className="absolute right-0">TriviaBot's Score:{botScore}</p>
           </div>
@@ -48,6 +46,7 @@ const VersusBot = (props) => {
             question={questions[0].question}
             wrongAnswer={questions[0].incorrectAnswers}
             correctAnswer={questions[0].correctAnswer}
+            gameMode={props.gameMode}
           />
         </div>
       )}
