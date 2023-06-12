@@ -8,6 +8,7 @@ const VersusBot = (props) => {
   const [gameInProgress, setGameInProgress] = useState(false);
   const [numQuestions, setNumQuestions] = useState(0);
   const [questions, setQuestions] = useState([]);
+  const [answered, setAnswered] = useState(false);
 
   async function startGame(numQuestions) {
     if (numQuestions === 0) {
@@ -18,6 +19,10 @@ const VersusBot = (props) => {
       setGameInProgress(true);
     }
   };
+
+  const questionBuilder = (question) => {
+    return question.question + " " + question.incorrectAnswers + "," + question.correctAnswer;
+  }
 
   const handleChange = (e) => {
     setNumQuestions(e.target.value);

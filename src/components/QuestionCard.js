@@ -34,6 +34,15 @@ const QuestionCard = (props) => {
   const guessVersusBot = (e) => {
     setDisabled(true);
     const element = document.getElementById(correctAnswer);
+    if (e.target.innerText === correctAnswer) {
+      e.target.style.background = "#86efac"; // green 300
+    } else {
+      e.target.style.background = "#f87171"; // red 400
+    }
+    setTimeout(() => {
+      e.target.style.background = "#c7d2fe"; // indigo 200
+      setDisabled(false);
+    }, 1000);
   }
 
   const handleClick = (e) => {
@@ -49,7 +58,6 @@ const QuestionCard = (props) => {
     }
 
   }
-
 
   return (
     <div className="flex flex-col items-center">
