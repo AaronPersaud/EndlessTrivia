@@ -3,13 +3,14 @@ import { useState } from "react";
 const AskQuestion = (props) => {
   const [inputValue, setInputValue] = useState("");
   const [answer, setAnswer] = useState();
+  const config = "You only answer trivia questions. If the question is not a trivia question, respond with 'Enter a trivia question'";
 
   const handleSubmit = (e) => {
     if (inputValue === "") {
       alert("Cannot be blank");
     } else {
       setAnswer("Loading answer...")
-      props.askGPT(inputValue).then((response) => {
+      props.askGPT(inputValue, config).then((response) => {
         setAnswer(response.text)
     });
       setInputValue("");

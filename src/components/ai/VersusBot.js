@@ -22,7 +22,7 @@ const VersusBot = (props) => {
 
   useEffect(() => {
     if (gameInProgress) {
-      quizGPT(questionBuilder(questions[0]))
+      quizGPT(questionBuilder(questions[0]), "You are a helpful assistant")
     }
   },[questions])
 
@@ -30,8 +30,8 @@ const VersusBot = (props) => {
     return question.question + " " + question.incorrectAnswers + "," + question.correctAnswer;
   }
 
-  const quizGPT = (question) => {
-    props.askGPT(question).then((response) => {
+  const quizGPT = (question, config) => {
+    props.askGPT(question, config).then((response) => {
       console.log(response.text);
     }) 
   }

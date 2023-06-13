@@ -6,13 +6,12 @@ import VersusBot from "./VersusBot";
 const TriviaBot = (props) => {
   const [mode, setMode] = useState();
 
-  const askGPT = (data) => {
+  const askGPT = (data, config) => {
     return axios
       .get("http://localhost:8000/askGPT", {
         params: {
           question: data,
-          systemConfig:
-            "You only answer trivia questions. If the question is not a trivia question, respond with 'Enter a trivia question'",
+          systemConfig: config,
         },
       })
       .then((response) => {
