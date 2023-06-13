@@ -43,7 +43,7 @@ const TriviaBot = (props) => {
         </div>
       )}
       {mode === "question" && <AskQuestion askGPT={askGPT} />}
-      {mode === "battle" && <VersusBot gameMode={props.gameMode}/>}
+      {mode === "battle" && <VersusBot askGPT={askGPT} gameMode={props.gameMode}/>}
     </div>
   );
 };

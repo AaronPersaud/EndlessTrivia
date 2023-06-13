@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import QuestionCard from "../QuestionCard";
 import { getQuestions } from "../../utils";
 
@@ -20,8 +20,20 @@ const VersusBot = (props) => {
     }
   };
 
+  useEffect(() => {
+    if (gameInProgress) {
+      quizGPT(questionBuilder(questions[0]))
+    }
+  },[questions])
+
   const questionBuilder = (question) => {
     return question.question + " " + question.incorrectAnswers + "," + question.correctAnswer;
+  }
+
+  const quizGPT = (question) => {
+    props.askGPT(question).then((response) => {
+      console.log(response.text);
+    }) 
   }
 
   const handleChange = (e) => {
@@ -34,6 +46,7 @@ const VersusBot = (props) => {
         <div>
           <p>Select number of questions</p>
           <select value={numQuestions} onChange={handleChange}>
+            <option value="0">Select</option>
             <option value="5">5</option>
             <option value="10">10</option>
             <option value="15">15</option>
