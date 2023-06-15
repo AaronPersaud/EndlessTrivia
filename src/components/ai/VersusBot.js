@@ -9,6 +9,7 @@ const VersusBot = (props) => {
   const [numQuestions, setNumQuestions] = useState(0);
   const [questions, setQuestions] = useState([]);
   const [answered, setAnswered] = useState(false);
+  const config = "You will be given a trivia question followed by 4 answers. Answer the question to the best of your ability. If you don't know the answer, make an educated guess. Say the answer exactly like the multiple choice option"
 
   async function startGame(numQuestions) {
     if (numQuestions === 0) {
@@ -22,12 +23,18 @@ const VersusBot = (props) => {
 
   useEffect(() => {
     if (gameInProgress) {
-      quizGPT(questionBuilder(questions[0]), "You are a helpful assistant")
+      quizGPT(questionBuilder(questions[0]), config)
     }
   },[questions])
 
   const questionBuilder = (question) => {
-    return question.question + " " + question.incorrectAnswers + "," + question.correctAnswer;
+    let res = question.question
+    const wrong = question.incorrectAnswers
+    for (let i = 0; i < wrong.length; i++) {
+      res += wrong[i] + "; "
+    }
+    res += question.correctAnswer;
+    return res;
   }
 
   const quizGPT = (question, config) => {
