@@ -9,7 +9,7 @@ const VersusBot = (props) => {
   const [numQuestions, setNumQuestions] = useState(0);
   const [questions, setQuestions] = useState([]);
   const [answered, setAnswered] = useState(false);
-  const config = "You will be given a trivia question followed by 4 answers. Answer the question to the best of your ability. If you don't know the answer, make an educated guess. Say the answer exactly like the multiple choice option"
+  const config = "You will be given a trivia question followed by 4 answers. Select the option that best answers the question. If you don't know the answer, make an educated guess. Give the answer like so: <number>:<option>"
 
   async function startGame(numQuestions) {
     if (numQuestions === 0) {
@@ -28,12 +28,12 @@ const VersusBot = (props) => {
   },[questions])
 
   const questionBuilder = (question) => {
-    let res = question.question
+    let res = question.question + " "
     const wrong = question.incorrectAnswers
     for (let i = 0; i < wrong.length; i++) {
-      res += wrong[i] + "; "
+      res += (i+1).toString() + " " + wrong[i] + "; "
     }
-    res += question.correctAnswer;
+    res += "4 " + question.correctAnswer;
     return res;
   }
 
