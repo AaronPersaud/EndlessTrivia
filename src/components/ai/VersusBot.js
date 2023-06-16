@@ -9,6 +9,7 @@ const VersusBot = (props) => {
   const [numQuestions, setNumQuestions] = useState(0);
   const [questions, setQuestions] = useState([]);
   const [answered, setAnswered] = useState(false);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
   const config = "You will be given a trivia question followed by 4 answers. Select the option that best answers the question. If you don't know the answer, make an educated guess. Give the answer like so: <number>:<option>"
 
   async function startGame(numQuestions) {
@@ -21,11 +22,24 @@ const VersusBot = (props) => {
     }
   };
 
+  const nextQuestion = (player) => {
+      console.log(player + " answered the question first!")
+      if (player === "You") {
+        setPlayerScore(playerScore + 1);
+      }
+      if (currentQuestion + 1 == numQuestions) {
+        setGameInProgress(false)
+      }
+      else {
+        setCurrentQuestion(currentQuestion + 1);
+      }
+  } 
+
   useEffect(() => {
     if (gameInProgress) {
-      quizGPT(questionBuilder(questions[0]), config)
+      quizGPT(questionBuilder(questions[currentQuestion]), config)
     }
-  },[questions])
+  },[currentQuestion])
 
   const questionBuilder = (question) => {
     let res = question.question + " "
@@ -68,10 +82,11 @@ const VersusBot = (props) => {
             <p className="absolute right-0">TriviaBot's Score:{botScore}</p>
           </div>
           <QuestionCard
-            question={questions[0].question}
-            wrongAnswer={questions[0].incorrectAnswers}
-            correctAnswer={questions[0].correctAnswer}
+            question={questions[currentQuestion].question}
+            wrongAnswer={questions[currentQuestion].incorrectAnswers}
+            correctAnswer={questions[currentQuestion].correctAnswer}
             gameMode={props.gameMode}
+            nextQuestion={nextQuestion}
           />
         </div>
       )}

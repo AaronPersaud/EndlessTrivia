@@ -36,6 +36,7 @@ const QuestionCard = (props) => {
     const element = document.getElementById(correctAnswer);
     if (e.target.innerText === correctAnswer) {
       e.target.style.background = "#86efac"; // green 300
+      props.nextQuestion("You");
     } else {
       e.target.style.background = "#f87171"; // red 400
     }
