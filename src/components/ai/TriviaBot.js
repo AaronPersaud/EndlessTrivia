@@ -38,7 +38,7 @@ const TriviaBot = (props) => {
           <button onClick={() => setMode("battle")} className="bg-indigo-200">
             Battle
           </button>
-          <button className="bg-indigo-200">Exit</button>
+          <button onClick={() => props.exit()} className="bg-indigo-200">Exit</button>
         </div>
       )}
       {mode === "question" && <AskQuestion askGPT={askGPT} />}

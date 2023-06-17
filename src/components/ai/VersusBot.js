@@ -10,6 +10,7 @@ const VersusBot = (props) => {
   const [questions, setQuestions] = useState([]);
   const [answered, setAnswered] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [winnerMessage, setWinnerMessage] = useState();
   const config = "You will be given a trivia question followed by 4 answers. Select the option that best answers the question. If you don't know the answer, make an educated guess. Give the answer like so: <number>:<option>"
 
   async function startGame(numQuestions) {
@@ -18,9 +19,24 @@ const VersusBot = (props) => {
     } else {
       const q = await getQuestions(numQuestions);
       setQuestions(q);
+      setCurrentQuestion(0);
+      setPlayerScore(0);
+      setBotScore(0);
       setGameInProgress(true);
     }
   };
+
+  const declareWinner = () => {
+    if (playerScore > botScore) {
+      setWinnerMessage("You win!");
+    }
+    else if (botScore > playerScore) {
+      setWinnerMessage("TriviaBot wins!");
+    }
+    else {
+      setWinnerMessage("It's a tie!");
+    }
+  }
 
   const nextQuestion = (player) => {
       console.log(player + " answered the question first!")
@@ -28,7 +44,7 @@ const VersusBot = (props) => {
         setPlayerScore(playerScore + 1);
       }
       if (currentQuestion + 1 == numQuestions) {
-        setGameInProgress(false)
+        declareWinner();
       }
       else {
         setCurrentQuestion(currentQuestion + 1);
@@ -39,7 +55,7 @@ const VersusBot = (props) => {
     if (gameInProgress) {
       quizGPT(questionBuilder(questions[currentQuestion]), config)
     }
-  },[currentQuestion])
+  },[questions, currentQuestion])
 
   const questionBuilder = (question) => {
     let res = question.question + " "
@@ -78,8 +94,8 @@ const VersusBot = (props) => {
       ) : (
         <div>
           <div className="flex">
-            <p>Your Score:{playerScore}</p>
-            <p className="absolute right-0">TriviaBot's Score:{botScore}</p>
+            <p>Your Score: {playerScore}</p>
+            <p className="absolute right-0">TriviaBot's Score: {botScore}</p>
           </div>
           <QuestionCard
             question={questions[currentQuestion].question}

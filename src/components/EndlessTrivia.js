@@ -82,7 +82,7 @@ export function EndlessTrivia({ ctx, G, moves }) {
         </div>
       )}
       {gameMode === 'multiplayer' && <Rooms moves={moves} game={G} />}
-      {gameMode === 'bot' && <TriviaBot gameMode={gameMode}/>}
+      {gameMode === 'bot' && <TriviaBot exit={() => setGameMode('singleplayer')} gameMode={gameMode}/>}
       <footer className="fixed bg-slate-200 bottom-0 left-0 text-xs">
         <a href={"https://the-trivia-api.com/"}>The Trivia API</a>
       </footer>
