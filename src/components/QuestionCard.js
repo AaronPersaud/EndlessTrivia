@@ -61,11 +61,11 @@ const QuestionCard = (props) => {
   }
 
   return (
-    <div className="flex flex-col items-center">
-      <h1 className="flex w-2/4 font-medium justify-center items-center text-center text-2xl h-32">
+    <div className="flex flex-col items-center mt-10">
+      <h1 className="flex w-2/4 font-medium justify-center items-center text-center text-2xl">
         {question}
       </h1>
-      <div className="w-2/4 grid grid-cols-2 gap-8">
+      <div className="w-2/4 grid grid-cols-2 gap-8 mt-8">
         {answers.map((answer) => (
           <button
             className="flex rounded-lg justify-center items-center shadow text-center bg-indigo-200 cursor-pointer h-24 p-9"
