@@ -31,25 +31,17 @@ export function EndlessTrivia({ ctx, G, moves }) {
     setCurrentQuestion(currentQuestion + 1);
   };
 
-  const goToRoom = () => {
-    setGameMode('multiplayer');
-  };
-
   const Multiplayer = () => {
     const element = document.getElementById("modal");
     element.style.display = "block";
   };
-
-  const startBot = () => {
-    setGameMode('bot');
-  }
 
   return (
     <div className="app bg-slate-200 min-h-screen">
       <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
       {gameMode === "singleplayer" && (
         <div>
-          <Modal moves={moves} change={goToRoom} />
+          <Modal moves={moves} change={() => setGameMode('multiplayer')} />
           <div className="flex">
             <div>
             <div>Score: {score}</div>
@@ -61,7 +53,7 @@ export function EndlessTrivia({ ctx, G, moves }) {
             >
               Multiplayer
             </button>
-            <button onClick={startBot} className="bg-white rounded-md">
+            <button onClick={() => setGameMode('bot')} className="bg-white rounded-md">
               vs. AI
             </button>
             </div>

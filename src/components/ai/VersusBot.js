@@ -36,6 +36,7 @@ const VersusBot = (props) => {
     else {
       setWinnerMessage("It's a tie!");
     }
+    setGameInProgress(false);
   }
 
   const nextQuestion = (player) => {
@@ -106,6 +107,7 @@ const VersusBot = (props) => {
           />
         </div>
       )}
+      {winnerMessage && <div>{winnerMessage}</div>}
     </div>
   );
 };
