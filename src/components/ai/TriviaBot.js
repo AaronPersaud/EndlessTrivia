@@ -38,11 +38,19 @@ const TriviaBot = (props) => {
           <button onClick={() => setMode("battle")} className="bg-indigo-200">
             Battle
           </button>
-          <button onClick={() => props.exit()} className="bg-indigo-200">Exit</button>
+          <button onClick={() => props.exit()} className="bg-indigo-200">
+            Exit
+          </button>
         </div>
       )}
       {mode === "question" && <AskQuestion askGPT={askGPT} />}
-      {mode === "battle" && <VersusBot askGPT={askGPT} gameMode={props.gameMode}/>}
+      {mode === "battle" && (
+        <VersusBot
+          setMode={setMode}
+          askGPT={askGPT}
+          gameMode={props.gameMode}
+        />
+      )}
     </div>
   );
 };
