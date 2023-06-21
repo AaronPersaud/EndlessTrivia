@@ -25,22 +25,22 @@ const TriviaBot = (props) => {
   return (
     <div>
       {!mode && (
-        <div className="bg-white w-1/2 text-center">
-          <p>TriviaBot</p>
+        <div className="flex justify-center">
+        <div className="rounded-lg bg-white justify-center w-1/2 text-center">
+          <p>Welcome to TriviaBot, here to fulfill all your trivia needs. Powered by OpenAI's gpt-3.5</p>
           <br />
-          <p>Test your wit against TriviaBot, powered by OpenAI's gpt-3.5</p>
-          <br />
-          <p>Or, ask it your own trivia questions. It knows EVERYTHING</p>
-          <br />
-          <button onClick={() => setMode("question")} className="bg-indigo-200">
-            Start
-          </button>
-          <button onClick={() => setMode("battle")} className="bg-indigo-200">
+          <p><button onClick={() => setMode("battle")} className="rounded-sm bg-indigo-200 hover:bg-indigo-400">
             Battle
+          </button> against TriviaBot and see who answers the questions first!</p>
+          <br />
+          <p>Or, <button onClick={() => setMode("question")} className="rounded-sm bg-indigo-200 hover:bg-indigo-400">
+            ask
+          </button> it your own trivia questions. It knows <b>EVERYTHING*</b></p>
+          <br />
+          <button onClick={() => props.exit()} className="rounded-sm bg-indigo-200 hover:bg-indigo-400">
+            Exit to main screen
           </button>
-          <button onClick={() => props.exit()} className="bg-indigo-200">
-            Exit
-          </button>
+        </div>
         </div>
       )}
       {mode === "question" && <AskQuestion askGPT={askGPT} />}
