@@ -43,9 +43,7 @@ export function EndlessTrivia({ ctx, G, moves }) {
         <div>
           <Modal moves={moves} change={() => setGameMode('multiplayer')} />
           <div className="flex">
-            <div>
             <div>Score: {score}</div>
-            </div>
             <div className="absolute right-0">
             <button
               onClick={Multiplayer}

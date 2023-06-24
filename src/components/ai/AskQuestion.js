@@ -24,7 +24,7 @@ const AskQuestion = (props) => {
         <input
           type="text"
           placeholder="Enter a trivia question..."
-          className="rounded-sm"
+          className="rounded-sm shadow"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyUp={(e) => {
