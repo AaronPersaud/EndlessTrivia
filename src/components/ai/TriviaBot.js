@@ -35,7 +35,9 @@ const TriviaBot = (props) => {
           <br />
           <p>Or, <button onClick={() => setMode("question")} className="rounded-sm bg-indigo-200 hover:bg-indigo-400">
             ask
-          </button> it your own trivia questions. It knows <b>EVERYTHING*</b></p>
+          </button> it your own trivia questions. It knows <b>EVERYTHING*</b>
+          <span className="absolute z-1 invisible hover:visible">Up until September 2021. Results may vary.</span>
+          </p>
           <br />
           <button onClick={() => props.exit()} className="rounded-sm bg-indigo-200 hover:bg-indigo-400">
             Exit to main screen

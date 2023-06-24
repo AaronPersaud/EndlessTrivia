@@ -26,6 +26,13 @@ const VersusBot = (props) => {
       setPhase("play");
     }
   }
+  const parseGPTGuess = (guess) => {
+    guess = guess.substr(2,guess.length - 1);
+    if (guess[0] === " ") {
+      guess = guess.substr(1,guess.length - 1)
+    }
+    return guess
+  }
 
   const declareWinner = () => {
     if (playerScore > botScore) {
@@ -69,6 +76,7 @@ const VersusBot = (props) => {
   const quizGPT = (question, config) => {
     props.askGPT(question, config).then((response) => {
       console.log(response.text);
+      console.log(parseGPTGuess(response.text));
     });
   };
 
