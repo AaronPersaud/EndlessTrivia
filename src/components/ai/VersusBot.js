@@ -50,6 +50,9 @@ const VersusBot = (props) => {
     if (player === "You") {
       setPlayerScore(playerScore + 1);
     }
+    else {
+      setBotScore(botScore + 1);
+    }
     if (currentQuestion + 1 == numQuestions) {
       declareWinner();
     } else {
@@ -59,7 +62,7 @@ const VersusBot = (props) => {
 
   useEffect(() => {
     if (phase === "play") {
-      quizGPT(questionBuilder(questions[currentQuestion]), config);
+      quizGPT(questionBuilder(questions[currentQuestion]), config, currentQuestion + 1);
     }
   }, [questions, currentQuestion]);
 
@@ -73,10 +76,19 @@ const VersusBot = (props) => {
     return res;
   };
 
-  const quizGPT = (question, config) => {
+  const quizGPT = (question, config, curr) => {
     props.askGPT(question, config).then((response) => {
       console.log(response.text);
       console.log(parseGPTGuess(response.text));
+      const answer = parseGPTGuess(response.text);
+      if (curr === currentQuestion) {
+        if (answer !== questions[currentQuestion].correctAnswer) {
+          quizGPT(question,config,curr)
+        }
+        else {
+          nextQuestion("bot");
+        }
+      }
     });
   };
 

@@ -45,12 +45,12 @@ const TriviaBot = (props) => {
         </div>
         </div>
       )}
-      {mode && <div className="flex">
+      {/* {mode && <div className="flex">
         <div className="absolute right-0">
           <button className="bg-white rounded-md px-2" onClick={() => setMode(null)}>Exit</button>
         </div>
       </div>
-      }
+      } */}
       {mode === "question" && <AskQuestion askGPT={askGPT} />}
       {mode === "battle" && (
         <VersusBot
