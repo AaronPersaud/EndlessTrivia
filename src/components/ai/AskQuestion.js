@@ -42,7 +42,13 @@ const AskQuestion = (props) => {
         </button>
       </div>
       <br />
-      {question && <div><p><b>Q: {question}</b></p></div>}
+      {question && (
+        <div>
+          <p>
+            <b>Q: {question}</b>
+          </p>
+        </div>
+      )}
       {answer && <div>A: {answer}</div>}
     </div>
   );

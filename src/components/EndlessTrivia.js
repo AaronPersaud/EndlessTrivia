@@ -9,7 +9,7 @@ export function EndlessTrivia({ ctx, G, moves }) {
   const [questions, setQuestions] = useState([]);
   const [score, setScore] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [gameMode, setGameMode] = useState('singleplayer');
+  const [gameMode, setGameMode] = useState("singleplayer");
   const multiplayerQuestions = G.multiQuestions;
 
   const post = questions[currentQuestion];
@@ -41,19 +41,19 @@ export function EndlessTrivia({ ctx, G, moves }) {
       <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
       {gameMode === "singleplayer" && (
         <div>
-          <Modal moves={moves} change={() => setGameMode('multiplayer')} />
+          <Modal moves={moves} change={() => setGameMode("multiplayer")} />
           <div className="flex">
             <div>Score: {score}</div>
             <div className="absolute right-0">
-            <button
-              onClick={Multiplayer}
-              className="bg-white rounded-md"
-            >
-              Multiplayer
-            </button>
-            <button onClick={() => setGameMode('bot')} className="bg-white rounded-md">
-              vs. AI
-            </button>
+              <button onClick={Multiplayer} className="bg-white rounded-md">
+                Multiplayer
+              </button>
+              <button
+                onClick={() => setGameMode("bot")}
+                className="bg-white rounded-md"
+              >
+                vs. AI
+              </button>
             </div>
           </div>
           {post ? (
@@ -71,8 +71,13 @@ export function EndlessTrivia({ ctx, G, moves }) {
           )}
         </div>
       )}
-      {gameMode === 'multiplayer' && <Rooms moves={moves} game={G} />}
-      {gameMode === 'bot' && <TriviaBot exit={() => setGameMode('singleplayer')} gameMode={gameMode}/>}
+      {gameMode === "multiplayer" && <Rooms moves={moves} game={G} />}
+      {gameMode === "bot" && (
+        <TriviaBot
+          exit={() => setGameMode("singleplayer")}
+          gameMode={gameMode}
+        />
+      )}
       <footer className="fixed bg-slate-200 bottom-0 left-0 text-xs">
         <a href={"https://the-trivia-api.com/"}>The Trivia API</a>
       </footer>

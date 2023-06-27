@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { shuffle } from "../utils"; 
+import { shuffle } from "../utils";
 
 const QuestionCard = (props) => {
   const question = props.question;
@@ -10,7 +10,7 @@ const QuestionCard = (props) => {
 
   useEffect(() => {
     setAnswers(shuffle([...wrongAnswer, correctAnswer]));
-  }, [wrongAnswer, correctAnswer])
+  }, [wrongAnswer, correctAnswer]);
 
   const guessSinglePlayer = (e) => {
     setDisabled(true);
@@ -44,21 +44,20 @@ const QuestionCard = (props) => {
       e.target.style.background = "#c7d2fe"; // indigo 200
       setDisabled(false);
     }, 1000);
-  }
+  };
 
   const handleClick = (e) => {
-    switch(props.gameMode) {
-      case 'singleplayer':
+    switch (props.gameMode) {
+      case "singleplayer":
         guessSinglePlayer(e);
         break;
-      case 'bot':
+      case "bot":
         guessVersusBot(e);
         break;
       default:
-        console.log("Something went wrong!")
+        console.log("Something went wrong!");
     }
-
-  }
+  };
 
   return (
     <div className="flex flex-col items-center mt-10">
