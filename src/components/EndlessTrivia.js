@@ -10,7 +10,7 @@ export function EndlessTrivia({ ctx, G, moves }) {
   const [score, setScore] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [gameMode, setGameMode] = useState("singleplayer");
-  const multiplayerQuestions = G.multiQuestions;
+  // const multiplayerQuestions = G.multiQuestions;
 
   const post = questions[currentQuestion];
 
