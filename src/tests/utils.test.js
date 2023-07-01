@@ -74,4 +74,15 @@ describe("getQuestions", () => {
     expect(questions).toEqual(mockData);
 
   });
+  it("fetches data erroneously from thetriviaapi.com", async () => {
+    const errorMessage = 'Something went wrong';
+
+    axios.get.mockImplementationOnce(() => 
+      Promise.reject(new Error(errorMessage))
+    );
+
+    const questions = await getQuestions(3);
+
+    expect(questions).toEqual(undefined)
+  })
 });
